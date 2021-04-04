@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <main class="container mt-3">
+    <!-- HERO -->
+    <section class="jumbotron text-center mt-4" style="background: url('https://place-hold.it/1600x300'); background-position: center center">
+      <h1 class="display-4">Всякие туры</h1>
+      <p class="lead">Для тех, кого отвлекают дома</p>
+      <p class="mt-5 w-50 mx-auto">Лучшие направления,где никто не будет вам мешать сидеть на берегу и изучать программирование, дизайн, разработку игр и управление продуктами</p>
+    </section>
+    <!-- CARDS -->
+    <div class="row mt-5">
+
+    {% for tour in list_of_tours[0:6] %}
+      {% for key, item in tour.items() %}
+          <div class="col-4">
+            <div class="card mb-4">
+              <div class="embed-responsive embed-responsive-16by9">
+                <img class="card-img-top embed-responsive-item" src="{{ item.picture }}" alt="" />
+              </div>          
+              <div class="card-body">
+                <h2 class="h5 card-title">{{ item.country }}:</h2> 
+                <h2 class="h5 card-title">{{ item.title }}</h2>
+                <p class="card-text">{{ item.description|truncate(150) }}</p>
+                <a href="{{ url_for('tour', id=key) }}" class="btn btn-sm btn-primary">Подробнее</a>
+              </div>
+            </div>
+          </div>
+      {% endfor %}     
+    {% endfor %}
+    </div>
+  </main>
+{% endblock %}
